@@ -1,0 +1,124 @@
+{
+ "scheduled": [
+  {
+   "id": "task_demo1",
+   "name": "Gym",
+   "due": "2026-01-12 18:00",
+   "urgency": "High",
+   "recurring": "Weekly",
+   "remind": 10,
+   "anchor_day": 12,
+   "notified": false,
+   "created": "2026-01-10 12:00:00"
+  }
+ ],
+ "past": [],
+ "settings": {
+  "user_name": "Sam",
+  "theme": "dark",
+  "ntfy_server": "https://ntfy.sh",
+  "ntfy_topic": "example-topic-100",
+  "notifications_enabled": true,
+  "close_to_tray": true,
+  "tray_hint_shown": false
+ },
+ "price_flash": {
+  "enabled": true,
+  "check_time": "09:00",
+  "drop_alert_pct": 5.0,
+  "notify_summary": true,
+  "last_auto_run": null,
+  "last_run": "2026-01-11 09:00",
+  "last_summary": {
+   "time": "2026-01-11 09:00",
+   "items": [],
+   "combos": [],
+   "engine": "requests"
+  },
+  "items": [
+   {
+    "id": "mon-a",
+    "category": "Monitor",
+    "name": "Example Monitor A 27-inch",
+    "short": "Monitor A",
+    "url": "https://www.amazon.sa/-/en/dp/B000000001",
+    "baseline": 1000.0,
+    "price": 950.0,
+    "prev_price": 1000.0,
+    "in_stock": true,
+    "availability": "In Stock",
+    "delivery": "",
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-11 09:00",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 1000.0,
+     "2026-01-11": 950.0
+    }
+   },
+   {
+    "id": "kb-b",
+    "category": "Peripherals",
+    "name": "Example Keyboard B",
+    "short": "Keyboard B",
+    "url": "https://www.amazon.sa/-/en/dp/B000000002",
+    "baseline": 300.0,
+    "price": 300.0,
+    "prev_price": null,
+    "in_stock": true,
+    "availability": "In Stock",
+    "delivery": "",
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-11 09:00",
+    "alert_below": 280.0,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 300.0
+    }
+   },
+   {
+    "id": "fan-c",
+    "category": "Other",
+    "name": "Example Fan Pack C",
+    "short": "Fan Pack C",
+    "url": "https://www.example-shop.com/p/123",
+    "baseline": 89.0,
+    "price": 79.0,
+    "prev_price": 89.0,
+    "in_stock": true,
+    "availability": "In Stock",
+    "delivery": "",
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-11 09:00",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 89.0,
+     "2026-01-11": 79.0
+    }
+   }
+  ],
+  "combos": [
+   {
+    "id": "combo-desk",
+    "name": "Desk setup",
+    "item_ids": [
+     "mon-a",
+     "kb-b"
+    ],
+    "threshold": 1200.0,
+    "baseline_total": 1300.0,
+    "last_alert_total": null
+   }
+  ],
+  "combo_history": {
+   "2026-01-10": {
+    "combo-desk": 1300.0
+   }
+  }
+ }
+}

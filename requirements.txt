@@ -1,0 +1,6 @@
+customtkinter>=5.2.2
+matplotlib>=3.8
+requests>=2.31
+pillow>=10.0
+pystray>=0.19
+curl_cffi>=0.7

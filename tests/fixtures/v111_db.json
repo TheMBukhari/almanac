@@ -1,0 +1,281 @@
+{
+ "scheduled": [
+  {
+   "id": "task_9184b288df",
+   "name": "Gym",
+   "due": "2026-10-22 18:00",
+   "urgency": "High",
+   "recurring": "Weekly",
+   "remind": 30,
+   "anchor_day": 15,
+   "notified": false,
+   "created": "2026-10-13 14:04:48"
+  },
+  {
+   "id": "task_1b50b69824",
+   "name": "Pay rent",
+   "due": "2026-11-01 10:00",
+   "urgency": "High",
+   "recurring": "Monthly",
+   "remind": 60,
+   "anchor_day": 1,
+   "notified": false,
+   "created": "2026-10-13 14:04:48"
+  }
+ ],
+ "past": [
+  {
+   "id": "past_88023b37c4",
+   "task_id": "task_9184b288df",
+   "name": "Gym",
+   "due": "2026-10-15 18:00",
+   "urgency": "High",
+   "recurring": "Weekly",
+   "status": "completed",
+   "auto": false,
+   "resolved_at": "2026-10-13 14:04:48",
+   "task": {
+    "id": "task_9184b288df",
+    "name": "Gym",
+    "due": "2026-10-15 18:00",
+    "urgency": "High",
+    "recurring": "Weekly",
+    "remind": 30,
+    "anchor_day": 15,
+    "notified": false,
+    "created": "2026-10-13 14:04:48"
+   }
+  }
+ ],
+ "settings": {
+  "user_name": "Sam",
+  "theme": "dark",
+  "ntfy_server": "https://ntfy.sh",
+  "ntfy_topic": "example-topic-111",
+  "notifications_enabled": true,
+  "close_to_tray": true,
+  "tray_hint_shown": false,
+  "seen_version": "1.11"
+ },
+ "price_flash": {
+  "enabled": true,
+  "check_time": "09:00",
+  "drop_alert_pct": 5.0,
+  "notify_summary": true,
+  "last_auto_run": null,
+  "last_run": null,
+  "last_summary": null,
+  "items": [
+   {
+    "id": "am-mon",
+    "category": "Monitor",
+    "part": "Monitor A",
+    "variant": "",
+    "name": "Example Monitor A",
+    "url": "https://www.amazon.sa/-/en/dp/B000000001",
+    "store": "amazon",
+    "currency": "SAR",
+    "raw_price": 1000.0,
+    "prev_raw": null,
+    "baseline_raw": 1000.0,
+    "shipping": 0.0,
+    "fees_pct": 0.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 1000.0
+    }
+   },
+   {
+    "id": "tr-mon",
+    "category": "Monitor",
+    "part": "Monitor A",
+    "variant": "",
+    "name": "Example Monitor A",
+    "url": "https://www.trendyol.sa/example/monitor-a-p-100000001",
+    "store": "trendyol",
+    "currency": "SAR",
+    "raw_price": 950.0,
+    "prev_raw": null,
+    "baseline_raw": 950.0,
+    "shipping": 0.0,
+    "fees_pct": 0.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 950.0
+    }
+   },
+   {
+    "id": "ne-mon",
+    "category": "Monitor",
+    "part": "Monitor A",
+    "variant": "",
+    "name": "Example Monitor A",
+    "url": "https://www.newegg.com/p/N82E00000000001",
+    "store": "newegg",
+    "currency": "USD",
+    "raw_price": 240.0,
+    "prev_raw": null,
+    "baseline_raw": 240.0,
+    "shipping": null,
+    "fees_pct": 15.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 240.0
+    }
+   },
+   {
+    "id": "ae-mon",
+    "category": "Monitor",
+    "part": "Monitor A",
+    "variant": "",
+    "name": "Example Monitor A",
+    "url": "https://www.aliexpress.com/item/1000000000000001.html",
+    "store": "aliexpress",
+    "currency": "SAR",
+    "raw_price": 900.0,
+    "prev_raw": null,
+    "baseline_raw": 900.0,
+    "shipping": null,
+    "fees_pct": 0.0,
+    "status": "manual",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "Check the seller before buying",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 900.0
+    }
+   },
+   {
+    "id": "am-kb",
+    "category": "Peripherals",
+    "part": "Keyboard B",
+    "variant": "",
+    "name": "Example Keyboard B",
+    "url": "https://www.amazon.sa/-/en/dp/B000000002",
+    "store": "amazon",
+    "currency": "SAR",
+    "raw_price": 300.0,
+    "prev_raw": null,
+    "baseline_raw": 300.0,
+    "shipping": 0.0,
+    "fees_pct": 0.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": 280.0,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 300.0
+    }
+   },
+   {
+    "id": "cz-kb",
+    "category": "Peripherals",
+    "part": "Keyboard B",
+    "variant": "",
+    "name": "Example Keyboard B",
+    "url": "https://www.cazasouq.com/example-keyboard-b",
+    "store": "cazasouq",
+    "currency": "BHD",
+    "raw_price": 30.0,
+    "prev_raw": null,
+    "baseline_raw": 30.0,
+    "shipping": null,
+    "fees_pct": 0.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 30.0
+    }
+   },
+   {
+    "id": "am-desk",
+    "category": "Other",
+    "part": "Desk C",
+    "variant": "",
+    "name": "Example Desk C",
+    "url": "https://www.amazon.sa/-/en/dp/B000000003",
+    "store": "amazon",
+    "currency": "SAR",
+    "raw_price": 700.0,
+    "prev_raw": null,
+    "baseline_raw": 700.0,
+    "shipping": 0.0,
+    "fees_pct": 0.0,
+    "status": "ok",
+    "error": "",
+    "last_checked": "2026-01-10 09:00",
+    "skip": false,
+    "note": "",
+    "alert_below": null,
+    "last_alert_price": null,
+    "history": {
+     "2026-01-10": 700.0
+    }
+   }
+  ],
+  "combos": [
+   {
+    "id": "combo-desk",
+    "name": "Desk setup",
+    "parts": [
+     "Monitor A",
+     "Keyboard B",
+     "Desk C"
+    ],
+    "threshold": 1950.0,
+    "baseline_total": 1899.2,
+    "last_alert_total": null
+   }
+  ],
+  "combo_history": {
+   "2026-01-10": {
+    "combo-desk": 1899.2
+   }
+  },
+  "rates": {
+   "SAR": 1.0,
+   "USD": 3.75,
+   "BHD": 9.9734,
+   "AED": 1.0211,
+   "QAR": 1.0302,
+   "OMR": 9.7403,
+   "KWD": 12.2
+  },
+  "schema": 2,
+  "part_alerts": {},
+  "last_best": {
+   "Monitor A": 900.0,
+   "Keyboard B": 299.2,
+   "Desk C": 700.0
+  }
+ }
+}

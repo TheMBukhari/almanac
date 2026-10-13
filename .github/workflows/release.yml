@@ -1,0 +1,101 @@
+# When a push to main carries a new APP_VERSION (one without a release yet), this builds Almanac.exe
+# on Windows and publishes release vX.YY, which the app updates from
+# (Almanac.exe, almanac_app.py and latest.json). Pushes that don't change the version only run the tests.
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: utf-8
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.v.outputs.tag }}
+      exists: ${{ steps.v.outputs.exists }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: v
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="v$(python3 tools/release.py version)"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"; echo "$tag is already released"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"; echo "$tag will be released"
+          fi
+
+  release:
+    needs: plan
+    runs-on: windows-latest
+    env:
+      TAG: ${{ needs.plan.outputs.tag }}
+      PUBLISH: ${{ needs.plan.outputs.exists == 'false' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Check the version and patch notes agree
+        run: python tools/release.py check --tag "${{ env.TAG }}"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt "pyinstaller>=6.10"
+
+      - name: Run the tests
+        run: python tools/run_tests.py
+
+      - name: Stamp the update source
+        if: env.PUBLISH == 'true'
+        run: python tools/release.py stamp --repo "${{ github.repository }}"
+
+      - name: Build Almanac.exe
+        if: env.PUBLISH == 'true'
+        run: |
+          python almanac_app.py --write-icon almanac.ico
+          python almanac_app.py --write-build-info build_info.py
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name Almanac --icon almanac.ico `
+            --collect-data customtkinter --collect-all curl_cffi `
+            --hidden-import pystray._win32 --hidden-import PIL._tkinter_finder --hidden-import PIL.ImageTk `
+            --hidden-import almanac_app --hidden-import build_info `
+            launcher.py
+
+      - name: Smoke test the .exe
+        if: env.PUBLISH == 'true'
+        run: |
+          $p = Start-Process -FilePath dist\Almanac.exe -ArgumentList "--write-build-info","smoke_info.py" -Wait -PassThru
+          if (-not (Select-String -Path smoke_info.py -Pattern 'CORE_VERSION')) { throw "Almanac.exe didn't start its bundled app" }
+          Get-Content smoke_info.py
+
+      - name: Gather the release files
+        if: env.PUBLISH == 'true'
+        shell: bash
+        run: |
+          mkdir -p release
+          cp dist/Almanac.exe release/
+          cp almanac_app.py release/almanac_app.py
+          python tools/release.py manifest --repo "${{ github.repository }}" --tag "${{ env.TAG }}" --out release/latest.json
+          python tools/release.py notes --out release/notes.md
+
+      - name: Publish the release
+        if: env.PUBLISH == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ env.TAG }}" --target "${{ github.sha }}" release/Almanac.exe release/almanac_app.py release/latest.json \
+            --title "Almanac ${{ env.TAG }}" --notes-file release/notes.md

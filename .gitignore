@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+build/
+dist/
+release/
+*.spec
+almanac.ico
+build_info.py
+smoke_info.py
+almanac_data.json
+scheduler_db.json
+*.log
+core/
+backups/
