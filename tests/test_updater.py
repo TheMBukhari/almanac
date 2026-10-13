@@ -49,14 +49,20 @@ class Server:
         os.environ["ALMANAC_MANIFEST_URL"] = f"{self.base}/latest.json"
 
     def publish(self, data: bytes, version: str, sha: str | None = None, min_launcher: int = 1):
-        with open(os.path.join(self.dir, "almanac_app.py"), "wb") as fh:
+        """Each release goes in its own folder: Windows won't let a file be replaced while it's being served."""
+        self.count = getattr(self, "count", 0) + 1
+        folder = os.path.join(self.dir, f"r{self.count}")
+        os.makedirs(folder)
+        url = f"{self.base}/r{self.count}"
+        with open(os.path.join(folder, "almanac_app.py"), "wb") as fh:
             fh.write(data)
         manifest = {"version": version, "name": "Test", "date": "2026-11-01", "summary": "Test release.",
-                    "sections": [["New", ["Something new."]]], "core_url": f"{self.base}/almanac_app.py",
+                    "sections": [["New", ["Something new."]]], "core_url": f"{url}/almanac_app.py",
                     "core_sha256": sha or hashlib.sha256(data).hexdigest(), "core_size": len(data),
-                    "min_launcher": min_launcher, "page_url": f"{self.base}/page"}
-        with open(os.path.join(self.dir, "latest.json"), "w") as fh:
+                    "min_launcher": min_launcher, "page_url": f"{url}/page"}
+        with open(os.path.join(folder, "latest.json"), "w") as fh:
             json.dump(manifest, fh)
+        os.environ["ALMANAC_MANIFEST_URL"] = f"{url}/latest.json"
         return manifest
 
 
@@ -78,7 +84,7 @@ def test_manifest_and_status(srv):
     check(app.update_status({**m, "min_launcher": 2}, settings, 1, manual=False) == "needs_full", "needs a new exe")
     check(app.update_status({**m, "version": "1.12"}, settings, 1, manual=True) == "none", "same version: nothing")
     check(app.update_status({**m, "version": "1.9"}, settings, 1, manual=True) == "none", "1.9 < 1.12 (numeric compare)")
-    os.remove(os.path.join(srv.dir, "latest.json"))
+    os.environ["ALMANAC_MANIFEST_URL"] = f"{srv.base}/nothing-published/latest.json"
     try:
         app.fetch_manifest()
         check(False, "missing release raises")
